@@ -8,7 +8,7 @@ class Node
 end
 
 class LinkedList
-  attr_accessor :node, :head, :tail
+  attr_accessor :head, :tail
 
   def initialize
     @head = nil
@@ -38,7 +38,11 @@ class LinkedList
   end
 
   def size
-    size = ObjectSpace.each_object(Node).count
+    #  size = ObjectSpace.each_object(Node).count
+    size = 0
+    ObjectSpace.each_object(Node) do |ob|
+      size += 1 unless ob.value.nil?
+    end
     puts "The list contains #{size} nodes"
   end
 
@@ -65,6 +69,23 @@ class LinkedList
 
     puts current.value
   end
+
+  def tail
+    puts @tail
+  end
+
+  def pop
+    i = 0
+    second_last_node = nil
+    current = @head
+    until current.next_node.nil?
+      second_last_node = current
+      current = current.next_node
+    end
+    @tail.value = nil
+    @tail = second_last_node
+    second_last_node.next_node = nil
+  end
 end
 
 one = LinkedList.new
@@ -77,4 +98,7 @@ one.append_data(5)
 
 # ObjectSpace.each_object(Node) { |i| p i }
 
-one.at(5)
+one.pop
+# ObjectSpace.each_object(Node) { |i| p i.value }
+
+one.size
