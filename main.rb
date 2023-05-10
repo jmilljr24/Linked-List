@@ -21,7 +21,6 @@ class LinkedList
       @head = new_node
       @tail = new_node
     else
-      #     new_node.next_node = @head.value
       new_node.next_node = @head
       @head = new_node
     end
@@ -33,7 +32,6 @@ class LinkedList
       @head = new_node
       @tail = new_node
     else
-      #     @tail.next_node = new_node.value
       @tail.next_node = new_node
       @tail = new_node
     end
@@ -54,13 +52,17 @@ class LinkedList
 
   def at(index)
     i = 0
-    return @head.value if index == 0
-
+    if index == 0
+      puts @head.value
+      return
+    end
     current = @head
     until i == index
       current = current.next_node
       i += 1
     end
+    return if current.nil?
+
     puts current.value
   end
 end
@@ -68,11 +70,11 @@ end
 one = LinkedList.new
 
 one.prepend_data(3)
-one.prepend_data(4)
-one.prepend_data(5)
-one.append_data(2)
-one.append_data(1)
+one.prepend_data(2)
+one.prepend_data(1)
+one.append_data(4)
+one.append_data(5)
 
 # ObjectSpace.each_object(Node) { |i| p i }
 
-one.at(4)
+one.at(5)
