@@ -36,6 +36,11 @@ class LinkedList
       @tail = new_node
     end
   end
+
+  def size
+    size = ObjectSpace.each_object(Node).count
+    puts "The list contains #{size} nodes"
+  end
 end
 
 one = LinkedList.new
@@ -47,3 +52,5 @@ one.append_data(2)
 one.append_data(1)
 
 ObjectSpace.each_object(Node) { |i| p i }
+
+one.size
