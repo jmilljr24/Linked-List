@@ -93,10 +93,22 @@ class LinkedList
       return true if current.value == value
 
       current = current.next_node
-      if current.next_node.nil?
-        return false
-      end
+      return false if current.next_node.nil?
     end
+  end
+
+  def find(value)
+    current = @head
+    i = 0
+    loop do
+      return i if current.value == value
+
+      current = current.next_node
+      i += 1
+      return if current.next_node.nil?
+    end
+
+    nil
   end
 end
 
@@ -111,4 +123,4 @@ one.append_data(5)
 # ObjectSpace.each_object(Node) { |i| p i }
 
 # ObjectSpace.each_object(Node) { |i| p i.value }
-p one.contains?(6)
+p one.find(6)
