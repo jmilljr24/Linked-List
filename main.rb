@@ -62,6 +62,8 @@ class LinkedList
     end
     current = @head
     until i == index
+      return if current.nil?
+
       current = current.next_node
       i += 1
     end
@@ -71,7 +73,7 @@ class LinkedList
   end
 
   def tail
-    puts @tail
+    puts @tail.value
   end
 
   def pop
@@ -90,10 +92,10 @@ class LinkedList
   def contains?(value)
     current = @head
     loop do
-      return true if current.value == value
+      return puts true if current.value == value
 
       current = current.next_node
-      return false if current.next_node.nil?
+      return puts false if current.next_node.nil?
     end
   end
 
@@ -101,14 +103,14 @@ class LinkedList
     current = @head
     i = 0
     loop do
-      return i if current.value == value
+      return puts i if current.value == value
 
       current = current.next_node
       i += 1
-      return if current.next_node.nil?
+      break if current.next_node.nil?
     end
 
-    nil
+    p nil
   end
 
   def to_s
@@ -121,15 +123,30 @@ class LinkedList
   end
 end
 
-one = LinkedList.new
+list = LinkedList.new
 
-one.prepend_data(3)
-one.prepend_data(2)
-one.prepend_data(1)
-one.append_data(4)
-one.append_data(5)
+# test class methods
+list.prepend_data(3)
+list.prepend_data(2)
+list.prepend_data(1)
+list.append_data(4)
+list.append_data(5)
 
-# ObjectSpace.each_object(Node) { |i| p i }
+list.size
 
-# ObjectSpace.each_object(Node) { |i| p i.value }
-one.to_s
+list.head
+
+list.tail
+
+list.at(3) # returns index
+list.at(10) # returns empty if outside of list range
+
+list.pop
+
+list.contains?(2) # returns true
+list.contains?(10) # returns false
+
+list.find(3) # returns index of node containing value
+list.find(10) # returns nil if not found
+
+list.to_s # returns all list items from head to tail
