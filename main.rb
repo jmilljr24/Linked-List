@@ -86,6 +86,18 @@ class LinkedList
     @tail = second_last_node
     second_last_node.next_node = nil
   end
+
+  def contains?(value)
+    current = @head
+    loop do
+      return true if current.value == value
+
+      current = current.next_node
+      if current.next_node.nil?
+        return false
+      end
+    end
+  end
 end
 
 one = LinkedList.new
@@ -98,7 +110,5 @@ one.append_data(5)
 
 # ObjectSpace.each_object(Node) { |i| p i }
 
-one.pop
 # ObjectSpace.each_object(Node) { |i| p i.value }
-
-one.size
+p one.contains?(6)
