@@ -1,10 +1,16 @@
 # Linked-List
 
-This is a Ruby implementation of a linked list as part of the lessons in The Odin Project.
+This is a Ruby implementation of a linked list as part of The Odin Project.
 
-Structure of a Linked List
-A linked list is a linear collection of data elements called nodes that “point” to the next node by means of a pointer.
+The following LinkedList methods are as follows:
 
-Each node holds a single element of data and a link or pointer to the next node in the list.
-
-A head node is the first node in the list, a tail node is the last node in the list.
+#append_data(value) adds a new node containing value to the end of the list
+#prepend_data(value) adds a new node containing value to the start of the list
+#size returns the total number of nodes in the list
+#head returns the first node value in the list
+#tail returns the last node value in the list
+#at(index) returns the node value at the given index
+#pop removes the last element from the list
+#contains?(value) returns true if the passed in value is in the list and otherwise returns false.
+#find(value) returns the index of the node containing value, or nil if not found.
+#to_s represent the LinkedList objects as strings, so you can print them out and preview them in the console.
