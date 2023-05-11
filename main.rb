@@ -110,6 +110,15 @@ class LinkedList
 
     nil
   end
+
+  def to_s
+    current = @head
+    puts current.value.to_s
+    until current.next_node.nil?
+      current = current.next_node
+      puts current.value.to_s
+    end
+  end
 end
 
 one = LinkedList.new
@@ -123,4 +132,4 @@ one.append_data(5)
 # ObjectSpace.each_object(Node) { |i| p i }
 
 # ObjectSpace.each_object(Node) { |i| p i.value }
-p one.find(6)
+one.to_s
