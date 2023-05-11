@@ -72,10 +72,6 @@ class LinkedList
     puts current.value
   end
 
-  def tail
-    puts @tail.value
-  end
-
   def pop
     i = 0
     second_last_node = nil
@@ -121,14 +117,32 @@ class LinkedList
       puts current.value.to_s
     end
   end
+
+  def insert_at(value, index)
+    current = @head
+    previous_node = @head
+    i = 0
+    if index.zero?
+      prepend_data(value)
+    else
+      until i == index
+        previous_node = current
+        current = current.next_node
+        i += 1
+      end
+      new_node = Node.new(value)
+      new_node.next_node = current
+      previous_node.next_node = new_node
+    end
+  end
 end
 
 list = LinkedList.new
 
 # test class methods
 list.prepend_data(3)
-list.prepend_data(2)
 list.prepend_data(1)
+list.prepend_data(0)
 list.append_data(4)
 list.append_data(5)
 
@@ -143,10 +157,12 @@ list.at(10) # returns empty if outside of list range
 
 list.pop
 
-list.contains?(2) # returns true
+list.contains?(1) # returns true
 list.contains?(10) # returns false
 
 list.find(3) # returns index of node containing value
 list.find(10) # returns nil if not found
+
+list.insert_at(2, 2) # value, index
 
 list.to_s # returns all list items from head to tail
